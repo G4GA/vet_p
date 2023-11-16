@@ -8,4 +8,3 @@
 # To run it:
 #### 1. To run, the only thing that you have to do is to type in a terminal
         npm start
-##### Notes: The connection script is already here, just change it with your credentials.
