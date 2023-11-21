@@ -11,7 +11,7 @@ body {
 .logIn {
     width: 200px;
     height: 200px;
-    margin-top: 125px;
+    margin-top: 110px;
     margin-left: 300px;
     background-color: #7C93C3;
     border-radius: 10px;
@@ -30,15 +30,16 @@ body {
 .logInInput {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: left;
     align-items: center;
+    gap: 20%;
     position: relative;
     height: 60%;
 }
 
 .logInInput > button{
     border: 0;
-    border-radius: 3px;
+    border-radius: 10px;
     color: #eaecef;
     background-color: #A25772;
 }

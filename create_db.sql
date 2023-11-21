@@ -34,6 +34,8 @@ CREATE TABLE empleado (
     id_empleado SERIAL NOT NULL,
 
     nombre VARCHAR (32) NOT NULL,
+    n_usuario VARCHAR (32) UNIQUE NOT NULL,
+    contrasena VARCHAR (32) NOT NULL,
     domicilio VARCHAR (32) NOT NULL,
     fecha_creacion DATE NOT NULL,
     telefono INT NOT NULL,
