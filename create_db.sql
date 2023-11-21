@@ -61,6 +61,8 @@ CREATE TABLE servicio_catalogo (
 
     descripcion VARCHAR (64),
     precio MONEY NOT NULL,
+
+    PRIMARY KEY (id_servicio_catalogo)
 );
 
 CREATE TABLE servicio (
@@ -102,6 +104,7 @@ CREATE TABLE venta (
 
     fecha_creacion DATE NOT NULL,
 
+    PRIMARY KEY (id_venta),
     FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
 );
 
