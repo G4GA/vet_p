@@ -1,7 +1,7 @@
 const { app } = require('electron')
-const createWindow= require ('./gui.js');
+const loginWindow = require ('./gui.js');
 
 app.whenReady().then(() => {
-    createWindow();
+    loginWindow();
   })
 

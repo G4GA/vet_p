@@ -1,4 +1,48 @@
 body {
     margin: 0;
-    background-color: blue;
+    background-color: #EEF5FF; /*Other color: 7C93C3*/
+    font-family: 'Roboto', sans-serif;
+}
+
+.textInput {
+    display: block;
+}
+
+.logIn {
+    width: 200px;
+    height: 200px;
+    margin-top: 125px;
+    margin-left: 300px;
+    background-color: #7C93C3;
+    border-radius: 10px;
+    color: #eaecef;
+}
+
+.logInMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+    position: relative;
+}
+
+.logInInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    height: 60%;
+}
+
+.logInInput > button{
+    border: 0;
+    border-radius: 3px;
+    color: #eaecef;
+    background-color: #A25772;
+}
+
+.logInInput > button:active {
+    background-color: #962a52;
 }

@@ -11,4 +11,14 @@ const createWindow = () => {
     win.loadFile('html/index.html')
   }
 
-module.exports = createWindow;
+const loginWindow = () => {
+  const win = new BrowserWindow ({
+    width: 800,
+    height: 450,
+    maxWidth: 800,
+    maxHeight: 450,
+  })
+  win.loadFile('html/login.html')
+}
+
+module.exports = loginWindow,createWindow;
