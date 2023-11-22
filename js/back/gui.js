@@ -19,6 +19,10 @@ const loginWindow = () => {
     maxHeight: 450,
   })
   win.loadFile('html/login.html')
+
+  win.on ('closed', () => {
+    win = null;
+  })
 }
 
 module.exports = loginWindow,createWindow;
