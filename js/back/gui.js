@@ -21,14 +21,4 @@ const createWindow = (win_h, win_w, html_path) => {
   return win;
 }
 
-const main = () => {
-  win = createWindow(450,800,'html/login.html');
-}
-
-const createApp = () => {
-  app.whenReady().then(() =>{
-    main ();
-  })
-}
-
-module.exports = {createApp};
+module.exports = {createWindow};
