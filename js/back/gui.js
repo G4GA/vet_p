@@ -12,7 +12,7 @@ const createWindow = () => {
   }
 
 const loginWindow = () => {
-  const win = new BrowserWindow ({
+  var win = new BrowserWindow ({
     width: 800,
     height: 450,
     maxWidth: 800,
