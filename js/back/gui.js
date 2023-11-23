@@ -1,28 +1,34 @@
-const { BrowserWindow } = require('electron')
+const { BrowserWindow, app } = require('electron')
 
-const createWindow = () => {
-    const win = new BrowserWindow({
-      width: 1600,
-      height: 900,
-      maxHeight: 900,
-      maxWidth: 1600
-    })
+const createWindow = (win_h, win_w, html_path) => {
+  let win = new BrowserWindow({
+    width:win_w,
+    height:win_h,
+    minHeight:win_h,
+    maxWidth:win_w,
+    maximizable:false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
+  });
 
-    win.loadFile('html/index.html')
-  }
+  win.loadFile(html_path);
 
-const loginWindow = () => {
-  var win = new BrowserWindow ({
-    width: 800,
-    height: 450,
-    maxWidth: 800,
-    maxHeight: 450,
-  })
-  win.loadFile('html/login.html')
-
-  win.on ('closed', () => {
+  win.on('close',() => {
     win = null;
+  });
+  return win;
+}
+
+const main = () => {
+  win = createWindow(450,800,'html/login.html');
+}
+
+const createApp = () => {
+  app.whenReady().then(() =>{
+    main ();
   })
 }
 
-module.exports = loginWindow,createWindow;
+module.exports = {createApp};
