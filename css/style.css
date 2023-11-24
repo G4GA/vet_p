@@ -17,7 +17,7 @@ body {
 
 .logIn {
     width: 200px;
-    height: 200px;
+    height: auto;
     margin-top: 110px;
     margin-left: 300px;
     background-color: #FFFBF5;
@@ -40,7 +40,7 @@ body {
     flex-direction: column;
     justify-content: left;
     align-items: center;
-    gap: 20%;
+    gap: 25px;
     position: relative;
     height: 60%;
 }
@@ -56,6 +56,7 @@ body {
     border-radius: 5px;
     color: #eaecef;
     background-color: #DA0C81;
+    margin-bottom: 5px;
 }
 
 .logInInput > button:active {

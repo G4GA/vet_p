@@ -27,15 +27,29 @@ CREATE TABLE mascota (
     FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 );
 
+CREATE TABLE tipo_empleado (
+    id_tipo_empleado SERIAL PRIMARY KEY,
+
+    rol VARCHAR (32) NOT NULL
+);
+
+INSERT INTO tipo_empleado VALUES (DEFAULT,'cajero');
+INSERT INTO tipo_empleado VALUES (DEFAULT,'administrador');
+INSERT INTO tipo_empleado VALUES (DEFAULT,'medico');
+INSERT INTO tipo_empleado VALUES (DEFAULT,'gerente');
+
 CREATE TABLE empleado (
     id_empleado SERIAL PRIMARY KEY,
+    id_tipo_empleado INT NOT NULL,
 
     nombre VARCHAR (32) NOT NULL,
     n_usuario VARCHAR (32) UNIQUE NOT NULL,
     contrasena VARCHAR (32) NOT NULL,
     domicilio VARCHAR (32) NOT NULL,
     fecha_creacion DATE NOT NULL,
-    telefono INT NOT NULL
+    telefono INT NOT NULL,
+
+    FOREIGN KEY (id_tipo_empleado) REFERENCES tipo_empleado(id_tipo_empleado)
 );
 
 CREATE TABLE cita (
@@ -134,3 +148,18 @@ CREATE TABLE receta_medicamento (
     FOREIGN KEY (id_receta) REFERENCES receta(id_receta),
     FOREIGN KEY (id_medicamento) REFERENCES medicamento(id_medicamento)
 );
+
+GRANT ALL ON cliente TO vet_admin;
+GRANT ALL ON mascota TO vet_admin;
+GRANT ALL ON tipo_empleado TO vet_admin;
+GRANT ALL ON empleado TO vet_admin;
+GRANT ALL ON cita TO vet_admin;
+GRANT ALL ON servicio_catalogo TO vet_admin;
+GRANT ALL ON servicio TO vet_admin;
+GRANT ALL ON producto TO vet_admin;
+GRANT ALL ON IVA TO vet_admin;
+GRANT ALL ON venta TO vet_admin;
+GRANT ALL ON detalle_venta TO vet_admin;
+GRANT ALL ON receta TO vet_admin;
+GRANT ALL ON medicamento TO vet_admin;
+GRANT ALL ON receta_medicamento TO vet_admin;
