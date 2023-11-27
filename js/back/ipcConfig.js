@@ -1,7 +1,7 @@
 const {createWindow} = require('./gui');
 const {ipcMain} = require('electron');
 const {query} = require('./db');
-
+const fs = require ('fs');
 
 const ipcLogic = (initial_window) => {
     var rol = null;
@@ -16,7 +16,7 @@ const ipcLogic = (initial_window) => {
                 await event.sender.send('login-repply',true);
                 await new Promise(r => setTimeout(r, 500));
                 initial_window.close();
-                initial_window = createWindow(900,1200,'html/index.html');
+                initial_window = createWindow(600,1200,'html/index.html');
             } else {
                 event.sender.send('login-repply',false);
             }
@@ -27,9 +27,7 @@ const ipcLogic = (initial_window) => {
     });
 
     ipcMain.on('set-rol',(event) => {
-        console.log(rol);
-        event.sender.send('get-rol',rol);
-    })
+    });
 }
 
 

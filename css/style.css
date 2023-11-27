@@ -62,3 +62,63 @@ body {
 .logInInput > button:active {
     background-color: #940B92;
 }
+
+#indexhtml {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+}
+
+#menuBar {
+    background-color: #9854ff;
+}
+
+#menuList{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#menuBar > ul > li {
+    width: 100%;
+    background-color: #9854ff;
+}
+
+#menuBar > ul > li:hover {
+    background-color: #a16edf;
+}
+
+#menuBar > ul > li:active {
+    background-color: #7516c9;
+}
+
+.menuBtn {
+    margin-left: 2.5%;
+    padding: 0;
+    background-color: #9854ff;
+    height: 50px;
+    width: 95%;
+    font-size: 1.5rem;
+    color: whitesmoke;
+    font-weight: bold;
+    text-align: left;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid;
+    border-color: #ffe0f3;
+}
+
+.menuBtn:hover {
+    background-color: #a16edf;
+}
+
+#content {
+    background-color: #ffe0f3;
+}
+
+.menuBtn:active {
+    background-color: #7516c9;
+}
+
