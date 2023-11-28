@@ -8,15 +8,19 @@
   <body id="indexhtml">
     <div id="menuBar">
       <ul id="menuList">
-        <li><button class="menuBtn">Cita</button></li>
-        <li><button class="menuBtn">Compra</button></li>
-        <li><button class="menuBtn">Receta</button></li>
-        <li><button class="menuBtn">Registrar Cliente</button></li>
-        <li><button class="menuBtn">Registrar Empleado</button></li>
-        <li><button class="menuBtn">Venta</button></li>
+        <li id="u_log" style="color:rgb(255, 252, 251);"><p>Logged as:<p></li>
+        <li class="btnList" id="cita"><button class="menuBtn">Cita</button></li>
+        <li class="btnList" id="compra"><button class="menuBtn">Compra</button></li>
+        <li class="btnList" id="receta"><button class="menuBtn">Receta</button></li>
+        <li class="btnList" id="regCliente"><button class="menuBtn">Cliente</button></li>
+        <li class="btnList" id="regMascota"><button class="menuBtn">Mascota</button></li>
+        <li class="btnList" id="regEmpleado"><button class="menuBtn">Empleado</button></li>
+        <li class="btnList" id="venta"><button class="menuBtn">Venta</button></li>
+        <li class="btnList" id="logout"><button class="menuBtn">Salir</button></li>
       </ul>
     </div>
-    <div id="content"></div>
+    <div id="content">
+    </div>
     <script src="../js/front/index.js" type="module"></script>
   </body>
 </html>

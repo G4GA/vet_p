@@ -16,8 +16,6 @@ const query = async (query) => {
 
     await client.end();
 
-    // console.log(result);
-
     return result.rowCount ? JSON.stringify(result.rows[0]): null;
 }
 

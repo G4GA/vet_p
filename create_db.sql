@@ -6,7 +6,7 @@ CREATE TABLE cliente (
     id_cliente SERIAL PRIMARY KEY,
 
     nombre VARCHAR (32),
-    telefono INT NOT NULL,
+    telefono VARCHAR (13) NOT NULL,
     domicilio VARCHAR (64),
 
     fecha_creacion DATE NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE empleado (
     contrasena VARCHAR (32) NOT NULL,
     domicilio VARCHAR (32) NOT NULL,
     fecha_creacion DATE NOT NULL,
-    telefono INT NOT NULL,
+    telefono VARCHAR(10) NOT NULL,
 
     FOREIGN KEY (id_tipo_empleado) REFERENCES tipo_empleado(id_tipo_empleado)
 );
@@ -87,6 +87,7 @@ CREATE TABLE producto (
 
     nombre VARCHAR (32),
     precio_unitario MONEY NOT NULL,
+    provedor VARCHAR(32) NOT NULL,
     unidades INT NOT NULL,
     stock_minimo INT NOT NULL,
     fecha_creacion DATE NOT NULL,
@@ -163,3 +164,5 @@ GRANT ALL ON detalle_venta TO vet_admin;
 GRANT ALL ON receta TO vet_admin;
 GRANT ALL ON medicamento TO vet_admin;
 GRANT ALL ON receta_medicamento TO vet_admin;
+
+INSERT INTO empleado VALUES (DEFAULT,2,'Damian Guevara','admin','4dm1n','Calle Jerecito 763',CURRENT_DATE,'3337870279');

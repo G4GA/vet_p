@@ -80,17 +80,9 @@ body {
     flex-direction: column;
 }
 
-#menuBar > ul > li {
+#btnList {
     width: 100%;
     background-color: #9854ff;
-}
-
-#menuBar > ul > li:hover {
-    background-color: #a16edf;
-}
-
-#menuBar > ul > li:active {
-    background-color: #7516c9;
 }
 
 .menuBtn {
@@ -122,3 +114,42 @@ body {
     background-color: #7516c9;
 }
 
+.u_name {
+    color: rgb(255, 252, 251);
+}
+
+#em_t {
+    text-align: center;
+}
+
+#e_info {
+    display: grid;
+    row-gap: 10%;
+    column-gap: 3%;
+    grid-template-rows: repeat(16,1fr);
+    grid-template-columns: 1fr 1fr;
+}
+
+#id_val {
+    grid-row: 2;
+}
+
+#uname_val {
+    grid-row: 4;
+}
+
+#addr_val {
+    grid-row: 6;
+}
+
+#tel_val {
+    grid-row: 8;
+}
+
+.em_inputs {
+    height: 20px;
+}
+
+.em_buttons {
+    grid-row: 10;
+}
