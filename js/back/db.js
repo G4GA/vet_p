@@ -16,7 +16,7 @@ const query = async (query) => {
 
     await client.end();
 
-    return result.rowCount ? JSON.stringify(result.rows[0]): null;
+    return result.rowCount ? JSON.stringify(result.rows): null;
 }
 
 module.exports = {query};

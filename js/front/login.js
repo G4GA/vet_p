@@ -16,7 +16,7 @@ const validate_cred = () => {
     ipcRenderer.send('login-click',{username,password});
 }
 
-const showResult = (result) => {
+const showResult = (result,is_sus) => {
     var resultHTML = document.getElementById('result-str')
     if (!resultHTML) {
         resultHTML = document.createElement('p');
@@ -26,7 +26,11 @@ const showResult = (result) => {
 
     resultHTML.style.textAlign = 'center';
 
-    if (result) {
+    if (is_sus) {
+        resultHTML.style.color = 'red';
+        resultHTML.innerHTML = 'Cuenta suspendida';
+    }
+    else if (result) {
         resultHTML.style.color = 'green';
         resultHTML.innerHTML = 'Ingreso exitoso';
     }
@@ -62,13 +66,12 @@ document.addEventListener("keyup", function(event) {
   });
 
 document.addEventListener('keypress', (event) => {
-    console.log('Foo');
     if (event.key==='Enter'){
         validate_cred();
     }
 });
 
 
-ipcRenderer.on('login-repply',(event,result) => {
-    showResult(result);
+ipcRenderer.on('login-repply',(event,result,is_sus) => {
+    showResult(result,is_sus);
 });

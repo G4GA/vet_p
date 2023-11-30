@@ -12,6 +12,10 @@ const createApp = () => {
   app.whenReady().then(() =>{
     main ();
   })
+
+  app.on('window-all-closed', () => {
+    app.quit()
+  })
 }
 
 createApp();

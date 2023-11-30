@@ -37,6 +37,7 @@ INSERT INTO tipo_empleado VALUES (DEFAULT,'cajero');
 INSERT INTO tipo_empleado VALUES (DEFAULT,'administrador');
 INSERT INTO tipo_empleado VALUES (DEFAULT,'medico');
 INSERT INTO tipo_empleado VALUES (DEFAULT,'gerente');
+INSERT INTO tipo_empleado VALUES (DEFAULT,'suspendido');
 
 CREATE TABLE empleado (
     id_empleado SERIAL PRIMARY KEY,
@@ -164,5 +165,20 @@ GRANT ALL ON detalle_venta TO vet_admin;
 GRANT ALL ON receta TO vet_admin;
 GRANT ALL ON medicamento TO vet_admin;
 GRANT ALL ON receta_medicamento TO vet_admin;
+
+GRANT USAGE, SELECT ON SEQUENCE empleado_id_empleado_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE cliente_id_cliente_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE mascota_id_mascota_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE tipo_empleado_id_tipo_empleado_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE receta_medicamento_id_receta_medicamento_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE medicamento_id_medicamento_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE receta_id_receta_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE detalle_venta_id_detalle_venta_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE venta_id_venta_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE IVA_id_IVA_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE producto_id_producto_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE servicio_id_servicio_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE servicio_catalogo_id_servicio_catalogo_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE cita_id_cita_seq TO vet_admin;
 
 INSERT INTO empleado VALUES (DEFAULT,2,'Damian Guevara','admin','4dm1n','Calle Jerecito 763',CURRENT_DATE,'3337870279');
