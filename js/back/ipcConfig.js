@@ -11,10 +11,10 @@ const ipcLogic = (initial_window) => {
         var result = await query(query_str);
         if (result != null) {
             var result = JSON.parse(result)[0];
+            var iSuspended = idSuspended === result['id_tipo_empleado'];
+            u_result = result;
         }
-        var iSuspended = idSuspended === result['id_tipo_empleado'];
-        u_result = result;
-        if (result['id_tipo_empleado'] === idSuspended){
+        if (result != null && result['id_tipo_empleado'] === idSuspended){
             event.sender.send('login-repply',false,iSuspended);
         }
         else if (result) {
@@ -32,6 +32,7 @@ const ipcLogic = (initial_window) => {
         else {
             event.sender.send('login-repply',false,iSuspended);
         }
+
     });
 
     ipcMain.on ('get-rol', (event) => {

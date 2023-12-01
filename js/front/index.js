@@ -85,6 +85,10 @@ const init_em = () => {
         }
     });
 
+    document.getElementById ('clean').addEventListener('click', () => {
+
+    });
+
     ipcRenderer.send('get-emType');
 };
 
