@@ -3,9 +3,9 @@ const {createWindow} = require('./gui');
 const {ipcLogic} = require('./ipcConfig');
 
 const main = () => {
-  win = createWindow(450,800,'html/login.html');
+  var win = {['value']:createWindow(450,800,'html/login.html',null)};
 
-  ipcLogic(win);
+  ipcLogic(win.value);
 }
 
 const createApp = () => {

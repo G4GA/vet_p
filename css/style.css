@@ -123,13 +123,13 @@ body {
 }
 
 #e_message {
-    height: 50px;
+    height: 75px;
 }
 
 #e_info {
     display: grid;
-    height: 425px;
-    row-gap: 20px;
+    height: 500px;
+    row-gap: 30px;
     column-gap: 10px;
     grid-template-rows: repeat(10,1fr);
     grid-template-columns: 1fr 1fr;
@@ -155,4 +155,88 @@ body {
 
 .em_buttons {
     grid-row: 10;
+}
+
+#l_table {
+    display: grid;
+    margin: 2px 0 0 0;
+    width: 100%;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+}
+
+#list_body {
+    padding: 0;
+    background-color: #BBAB8C;
+}
+
+.telement {
+    background-color: #FDF7E4;
+    margin: 0;
+}
+
+.thead {
+    grid-row: 1 / span 1;
+}
+
+.tid {
+    grid-column: 1;
+}
+
+.tname {
+    grid-column: 2;
+}
+
+.tu_name {
+    grid-column: 3;
+}
+
+.trole {
+    grid-column: 4;
+}
+
+.tbutton {
+    grid-column: 5;
+}
+
+#c_message {
+    height: 75px;
+}
+
+#c_info {
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    column-gap: 10px;
+    row-gap: 48px;
+    margin: 0 10px 0 10px;
+}
+
+#client_id_val {
+   grid-row: 2;
+}
+
+#client_phone_val {
+    grid-row: 4;
+}
+
+#client_cdate_val {
+    grid-row: 6;
+}
+
+#pet_id_val {
+    grid-row: 2;
+}
+
+#pet_name_val {
+    grid-row: 4;
+}
+
+#pet_weight_val {
+    grid-row: 6;
+}
+
+#pet_udate_val {
+    grid-row: 8;
 }

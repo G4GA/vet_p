@@ -1,6 +1,19 @@
 const {ipcRenderer} = require('electron');
+const getRol = require('../js/front/util.js');
 
 var current_user;
+
+const clean_values = () => {
+    var warning = document.getElementById('warning_label');
+    if (warning != null) {
+        warning.innerHTML = '';
+    }
+    var inputs = document.getElementsByClassName('em_input');
+    document.getElementById('id_val').innerHTML = '';
+    for (let i = 0;i < inputs.length;i ++) {
+        inputs[i].value = '';
+    }
+};
 
 const showUser = (user) => {
     var userName = document.createElement('p');
@@ -10,14 +23,6 @@ const showUser = (user) => {
     userName.innerHTML = user['nombre'];
     document.getElementById('u_log').appendChild(userName);
 }
-
-document.getElementById('venta').addEventListener('click', () => {
-    ipcRenderer.send('get-venta');
-});
-
-document.getElementById('regEmpleado').addEventListener('click', () => {
-    ipcRenderer.send('get-empleado');
-})
 
 ipcRenderer.send('get-rol');
 
@@ -49,14 +54,19 @@ ipcRenderer.on('set-venta', (event,html) => {
     document.getElementById('content').innerHTML = html;
 });
 
-ipcRenderer.on('set-empleado',async (evecleant,html) => {
+//Empleado
+ipcRenderer.on('set-empleado',async (event,html) => {
     document.getElementById('content').innerHTML = await html;
     init_em();
 });
-//Empleado
+
+document.getElementById('regEmpleado').addEventListener('click', () => {
+    ipcRenderer.send('get-empleado');
+});
+
 const init_em = () => {
     document.getElementById('em_save').addEventListener('click', () => {
-        var warning = document.createElement('h3');
+        var warning = document.getElementById('warning_label') === null ? document.createElement('h3'): document.getElementById('warning_label');
         warning.id = 'warning_label';
         warning.style.textAlign = 'center';
         warning.style = 'grid-column: 1 / span 2;  grid-row: 11;';
@@ -77,19 +87,24 @@ const init_em = () => {
         }
 
         if (!isEmptyField) {
-            ipcRenderer.send('update-enter-user',values);
+            ipcRenderer.send('update-enter-user',values,document.getElementById('id_val').innerHTML);
         }
         else {
-            warning.style= 'color: #860A35; grid-row: 11; grid-column: 1 / span 2;';
+            console.log('a');
+            warning.style= 'color: #860A35;';
             warning.innerHTML = '¡Hay campos vacíos!';
         }
     });
 
     document.getElementById ('clean').addEventListener('click', () => {
-
+        clean_values();
     });
 
     ipcRenderer.send('get-emType');
+
+    document.getElementById('search_em').addEventListener('click', () => {
+        ipcRenderer.send('list-em');
+    });
 };
 
 ipcRenderer.on('update-enter-user-result',(event,isNumber,isValidType) => {
@@ -107,12 +122,20 @@ ipcRenderer.on('update-enter-user-result',(event,isNumber,isValidType) => {
     }
     else {
         warning.style= 'color: #508D69;';
-        warning.innerHTML = '¡Empleado Registrado!';
-        var inputs = document.getElementsByClassName('em_input');
-        for (let i = 0;i < inputs.length;i ++) {
-            inputs[i].value = '';
-        }
+        clean_values();
+        warning.innerHTML = '¡Listo!';
     }
+});
+
+ipcRenderer.on ('fill-em-info',(event,em_info,role_list) => {
+    document.getElementById('id_val').innerHTML = em_info['id_empleado'];
+    document.getElementById('name_val').value = em_info['nombre'];
+    document.getElementById('uname_val').value = em_info['n_usuario'];
+    document.getElementById('pwd_val').value = em_info['contrasena'];
+    document.getElementById('addr_val').value = em_info['domicilio'];
+    document.getElementById('date_val').value = em_info['fecha_creacion'].slice(0,10);
+    document.getElementById('tel_val').value = em_info['telefono'];
+    document.getElementById('em_type_input').value = getRol(em_info['id_tipo_empleado'],role_list).toUpperCase();
 });
 
 ipcRenderer.on ('set-emType', (event,data_list) => {
@@ -126,4 +149,37 @@ ipcRenderer.on ('set-emType', (event,data_list) => {
 
     document.getElementById('e_info').appendChild(html_list);
 });
+
+document.getElementById('logout').addEventListener('click',() => {
+    ipcRenderer.send('exit');
+});
 //End Empleado
+//Cliente
+document.getElementById('regCliente').addEventListener('click',() => {
+    ipcRenderer.send('get-cliente');
+});
+
+ipcRenderer.on('set-cliente',async (event,html) => {
+    document.getElementById('content').innerHTML = await html;
+    init_client();
+});
+
+const init_client = () => {
+
+}
+//End cliente
+//Mascota
+document.getElementById('regMascota').addEventListener('click', () => {
+    ipcRenderer.send('get-mascota');
+});
+
+ipcRenderer.on('set-mascota',async (event,html) => {
+    document.getElementById('content').innerHTML = await html;
+    init_pet();
+});
+
+const init_pet = () => {
+
+}
+
+//End Mascota
