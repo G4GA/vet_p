@@ -83,6 +83,15 @@ CREATE TABLE servicio (
     FOREIGN KEY (id_servicio_catalogo) REFERENCES servicio_catalogo(id_servicio_catalogo)
 );
 
+CREATE TABLE compra (
+    id_compra SERIAL PRIMARY KEY,
+    id_empleado INT NOT NULL,
+    provedor VARCHAR(32),
+
+    fecha DATE NOT NULL,
+    FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
+);
+
 CREATE TABLE producto (
     id_producto SERIAL PRIMARY KEY,
 
@@ -94,6 +103,16 @@ CREATE TABLE producto (
     fecha_creacion DATE NOT NULL,
     ultima_actualizacion DATE NOT NULL,
     activo BOOLEAN NOT NULL
+);
+
+CREATE TABLE detalle_compra (
+    id_detalle_compra SERIAL PRIMARY KEY,
+    id_producto INT NOT NULL,
+    id_compra INT NOT NULL,
+
+    precio_compra MONEY NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
+    FOREIGN KEY (id_compra) REFERENCES compra(id_compra)
 );
 
 CREATE TABLE IVA (

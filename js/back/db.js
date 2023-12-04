@@ -10,7 +10,9 @@ var client_info = {
 
 const query = async (query) => {
     const client = new Client(client_info);
-    await client.connect();
+    client.connect((err) => {
+        if (err) throw err;
+    });
 
     var result = await client.query(query);
 

@@ -181,5 +181,17 @@ ipcRenderer.on('set-mascota',async (event,html) => {
 const init_pet = () => {
 
 }
-
 //End Mascota
+//Venta
+document.getElementById('venta').addEventListener('click',() => {
+    ipcRenderer.send('get-venta');
+});
+
+ipcRenderer.on ('set-venta',async (event,html) => {
+    document.getElementById('content').innerHTML = await html;
+    init_venta();
+});
+
+const init_venta = () => {
+
+};

@@ -14,8 +14,8 @@ const ipcLogic = (initial_window) => {
     var list_win = null;
     ipcMain.on('login-click',async (event,{username,password}) => {
         var query_str = `SELECT * FROM empleado WHERE n_usuario='${username}'`;
-        var idSuspended = JSON.parse(await query("SELECT * FROM tipo_empleado WHERE rol='suspendido'"))[0]['id_tipo_empleado'];
         var result = await query(query_str);
+        var idSuspended = JSON.parse(await query("SELECT * FROM tipo_empleado WHERE rol='suspendido'"))[0]['id_tipo_empleado'];
         if (result != null) {
             var result = JSON.parse(result)[0];
             var iSuspended = idSuspended === result['id_tipo_empleado'];
@@ -84,7 +84,7 @@ const ipcLogic = (initial_window) => {
             var qry_result;
             console.log(id_element);
             if (id_element != ''){
-                qry_result = await query(`UPDATE empleado SET (id_tipo_empleado,nombre,n_usuario,contrasena,domicilio,fecha_creacion,telefonoj) = (${RolId},'${values['name_val']}','${values['uname_val']}','${values['pwd_val']}','${values['addr_val']}','${values['date_val']}','${values['tel_val']}') WHERE id_empleado=${id_element}`);
+                qry_result = await query(`UPDATE empleado SET (id_tipo_empleado,nombre,n_usuario,contrasena,domicilio,fecha_creacion,telefono) = (${RolId},'${values['name_val']}','${values['uname_val']}','${values['pwd_val']}','${values['addr_val']}','${values['date_val']}','${values['tel_val']}') WHERE id_empleado=${id_element}`);
             }
             else {
                 qry_result = await query(`INSERT INTO empleado VALUES (DEFAULT,${RolId},'${values['name_val']}','${values['uname_val']}','${values['pwd_val']}','${values['addr_val']}','${values['date_val']}','${values['tel_val']}')`);
@@ -134,6 +134,15 @@ const ipcLogic = (initial_window) => {
     ipcMain.on('get-mascota',(event) => {
         close_wlist(list_win);
         fs.readFile ('./html/mascota.html','utf-8', (err,data) => {
+            if (err) throw Error('Not able to open the file');
+
+            event.sender.send('set-mascota',data);
+        });
+    });
+
+    ipcMain.on ('get-venta',(event) => {
+        close_wlist(list_win);
+        fs.readFile ('./html/venta.html','utf-8', (err,data) => {
             if (err) throw Error('Not able to open the file');
 
             event.sender.send('set-mascota',data);

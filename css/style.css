@@ -70,7 +70,7 @@ body {
 }
 
 #menuBar {
-    background-color: #9854ff;
+    background-color: #F05941;
 }
 
 #menuList{
@@ -82,13 +82,13 @@ body {
 
 #btnList {
     width: 100%;
-    background-color: #9854ff;
+    background-color: #F05941;
 }
 
 .menuBtn {
     margin-left: 2.5%;
     padding: 0;
-    background-color: #9854ff;
+    background-color: #F05941;
     height: 50px;
     width: 95%;
     font-size: 1.5rem;
@@ -103,15 +103,15 @@ body {
 }
 
 .menuBtn:hover {
-    background-color: #a16edf;
+    background-color: #f2715e;
 }
 
 #content {
-    background-color: #ffe0f3;
+    background-color: #F3EEEA;
 }
 
 .menuBtn:active {
-    background-color: #7516c9;
+    background-color: #efa296;
 }
 
 .u_name {
@@ -239,4 +239,123 @@ body {
 
 #pet_udate_val {
     grid-row: 8;
+}
+
+#info_venta {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#id_venta_val {
+    grid-column: 1;
+}
+
+#venta_date_label {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#client_label {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#em_label {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#venta_date_val {
+    height: 10px;
+}
+
+#venta_buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    grid-column: span 4;
+}
+
+.client_in_class .em_in_class {
+    display: inline;
+}
+
+
+#list_and_add {
+    background-color: #BE3144;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 5px;
+}
+
+#product_id {
+    grid-column: 1;
+}
+
+#product_qty {
+    grid-column: 2;
+}
+
+#search_product_button {
+    grid-column: 4;
+    height: 30px;
+    margin-top: 8%;
+    width: 50%;
+}
+
+#add_product_button {
+    grid-column: 3;
+    height: 30px;
+    margin-top: 8%;
+    width: 50%;
+}
+
+#product_add > p {
+    margin: 10px 0 0 0;
+}
+
+.add_label {
+    color: white;
+}
+
+.add_val {
+    margin: 0 0 5px 0;
+}
+
+#product_table {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #22092C;
+    gap: 2px;
+    padding: 2px;
+    height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.product_thead {
+    background-color: #872341;
+    color: white;
+    margin: 0;
+    height: fit-content;
+}
+
+#sale_IVA_total {
+    padding: 5px 0 0 10px;
+}
+
+#venta_save_clean_button {
+    margin: 7% 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#venta_save_clean_button > button {
+    width: 25%;
+}
+
+#search_em_button {
+    width: 75%;
+    grid-column: 4 / span 2;
 }

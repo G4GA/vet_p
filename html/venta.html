@@ -1,1 +1,55 @@
-<p id="sioq">No holi</p>
+<div id="info_venta">
+    <p id="id_venta_label">ID Venta:</p>
+    <p id="id_venta_val" style="margin: 0;"></p>
+
+    <p id="venta_date_label">Fecha:</p>
+    <input type="date" id="venta_date_val">
+
+    <!-- <p id="client_label">Cliente:</p>
+    <div id="client_info">
+        <p id="client_name" class="client_in_class" style="margin: 0;"></p>
+    </div> -->
+
+    <p id="em_label">Empleado:</p>
+    <div id="em_info">
+        <p id="em_name" class="em_in_class" style="margin: 0;"></p>
+    </div>
+    <button id="search_em_button" class="sale_btn">Buscar empleado</button>
+</div>
+<div id="product_add">
+    <p>Agregar productos:</p>
+    <div id="list_and_add">
+        <div id="product_id">
+            <p id="product_id_label" class="productid_class add_label">Id producto:</p>
+            <input type="text" id="product_id_val" class="productid_class add_val">
+        </div>
+        <div id="product_qty">
+            <p id="product_qty_label" class="productqty_class add_label">Cantidad:</p>
+            <input type="number" id="product_qty_val" class="productqty_class add_val">
+        </div>
+        <button id="add_product_button">Agregar producto</button>
+        <button id="search_product_button">Buscar producto</button>
+    </div>
+</div>
+<div id="product_table">
+    <p class="product_thead">ID:</p>
+    <p class="product_thead">Nombre:</p>
+    <p class="product_thead">Cantidad:</p>
+    <p class="product_thead">Precio Unitario:</p>
+</div>
+<div id="save_and_cancel">
+    <div id="sale_IVA_total">
+        <div id="sale_IVA">
+            <p id="IVA_label" style="display: inline;">IVA: </p>
+            <p id="IVA_" style="display: inline;"></p>
+        </div>
+        <div id="sale_total">
+            <p id="total_label" style="display: inline;">Total: </p>
+            <p id="total_val" style="display: inline;"></p>
+        </div>
+    </div>
+    <div id="venta_save_clean_button">
+        <button id="save_venta">Registrar</button>
+        <button id="clean_venta">Limpiar</button>
+    </div>
+</div>
