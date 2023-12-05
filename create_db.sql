@@ -37,7 +37,6 @@ INSERT INTO tipo_empleado VALUES (DEFAULT,'cajero');
 INSERT INTO tipo_empleado VALUES (DEFAULT,'administrador');
 INSERT INTO tipo_empleado VALUES (DEFAULT,'medico');
 INSERT INTO tipo_empleado VALUES (DEFAULT,'gerente');
-INSERT INTO tipo_empleado VALUES (DEFAULT,'suspendido');
 
 CREATE TABLE empleado (
     id_empleado SERIAL PRIMARY KEY,
@@ -49,6 +48,7 @@ CREATE TABLE empleado (
     domicilio VARCHAR (32) NOT NULL,
     fecha_creacion DATE NOT NULL,
     telefono VARCHAR(10) NOT NULL,
+    activo BOOLEAN NOT NULL,
 
     FOREIGN KEY (id_tipo_empleado) REFERENCES tipo_empleado(id_tipo_empleado)
 );
@@ -86,7 +86,7 @@ CREATE TABLE servicio (
 CREATE TABLE compra (
     id_compra SERIAL PRIMARY KEY,
     id_empleado INT NOT NULL,
-    provedor VARCHAR(32),
+    proveedor VARCHAR(32),
 
     fecha DATE NOT NULL,
     FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
@@ -97,12 +97,10 @@ CREATE TABLE producto (
 
     nombre VARCHAR (32),
     precio_unitario MONEY NOT NULL,
-    provedor VARCHAR(32) NOT NULL,
     unidades INT NOT NULL,
     stock_minimo INT NOT NULL,
     fecha_creacion DATE NOT NULL,
     ultima_actualizacion DATE NOT NULL,
-    activo BOOLEAN NOT NULL
 );
 
 CREATE TABLE detalle_compra (
@@ -200,4 +198,4 @@ GRANT USAGE, SELECT ON SEQUENCE servicio_id_servicio_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE servicio_catalogo_id_servicio_catalogo_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE cita_id_cita_seq TO vet_admin;
 
-INSERT INTO empleado VALUES (DEFAULT,2,'Damian Guevara','admin','4dm1n','Calle Jerecito 763',CURRENT_DATE,'3337870279');
+INSERT INTO empleado VALUES (DEFAULT,2,'Damian Guevara','admin','4dm1n','Calle Jerecito 763',CURRENT_DATE,'3337870279',TRUE);

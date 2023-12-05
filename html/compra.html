@@ -1,0 +1,61 @@
+<div id="compra_info">
+    <div id="compra_id">
+        <p id="compra_id_label">Id:</p>
+        <p id="comrpa_id_val">####</p>
+    </div>
+    <div id="compra_date">
+        <p id="compra_date_label">Fecha:</p>
+        <input type="date">
+    </div>
+    <div id="supplier_info">
+        <p id="supplier_label">Proveedor:</p>
+        <input type="text" id="supplier_val">
+    </div>
+</div>
+<div id="detalle_compra_info"">
+    <div id="id_producto">
+        <p id="id_producto_label" class="detalle_compra_labels">Id:</p>
+    </div>
+    <div id="nombre_producto">
+        <p id="nombre_producto_label" class="detalle_compra_labels">Nombre:</p>
+        <input type="text" id="nombre_producto_val">
+    </div>
+    <div id="coste_producto">
+        <p id="coste_producto_label" class="detalle_compra_labels">Coste (por unidad):</p>
+        <input type="number" id="coste_producto_val">
+    </div>
+    <div id="precio_unitario">
+        <p id="precio_unitario_label" class="detalle_compra_labels">Precio de venta (por unidad):</p>
+        <input type="number" id="precio_unitario_val">
+    </div>
+    <div id="cantidad_producto">
+        <p id="cantidad_producto_label" class="detalle_compra_labels">Cantidad:</p>
+        <input type="number" id="cantidad_producto_val">
+    </div>
+    <div id="stock_minimo">
+        <p id="stock_minimo_label" class="detalle_compra_labels">Stock minimo:</p>
+    </div>
+
+    <button id="search_producto">Buscar producto</button>
+</div>
+<div class="product_table" id="product_table_venta" style="height: 250p; max-height: 250px;">
+    <p class="thead_compra">Id:</p>
+    <p class="thead_compra">Nombre:</p>
+    <p class="thead_compra">Cantidad:</p>
+    <p class="thead_compra">Coste de compra:</p>
+    <p class="thead_compra">Precio Unitario:</p>
+    <h2 style="grid-row: 2 / span 5; grid-column: 1 / span 5; text-align: center; color: white;">Lista vacía</h2>
+</div>
+<div id="save_and_cancel_compra">
+    <div id="compra_total" style="margin: 5px 0 0 5px;">
+        <p id="total_compra_label" style="display: inline;">Total: </p>
+        <p id="total_compra_val" style="display: inline;"></p>
+    </div>
+    <div id="venta_save_clean_button">
+        <button id="save_venta">Registrar</button>
+        <button id="clean_venta">Limpiar</button>
+    </div>
+    <div id="sale_record" style="display: flex; justify-content: center;">
+        <button id="sale_record_button" style="margin-top: 3%;">Ver historial</button>
+    </div>
+</div>

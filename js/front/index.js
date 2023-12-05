@@ -85,12 +85,11 @@ const init_em = () => {
             }
             values[inputs[i].id] = inputs[i].value;
         }
-
+        values[document.getElementById('active_checkbox').id] = document.getElementById('active_checkbox').checked;
         if (!isEmptyField) {
             ipcRenderer.send('update-enter-user',values,document.getElementById('id_val').innerHTML);
         }
         else {
-            console.log('a');
             warning.style= 'color: #860A35;';
             warning.innerHTML = '¡Hay campos vacíos!';
         }
@@ -136,6 +135,7 @@ ipcRenderer.on ('fill-em-info',(event,em_info,role_list) => {
     document.getElementById('date_val').value = em_info['fecha_creacion'].slice(0,10);
     document.getElementById('tel_val').value = em_info['telefono'];
     document.getElementById('em_type_input').value = getRol(em_info['id_tipo_empleado'],role_list).toUpperCase();
+    document.getElementById('active_checkbox').checked = em_info['activo'];
 });
 
 ipcRenderer.on ('set-emType', (event,data_list) => {
@@ -195,3 +195,17 @@ ipcRenderer.on ('set-venta',async (event,html) => {
 const init_venta = () => {
 
 };
+//End venta
+//Compra
+
+document.getElementById('compra').addEventListener('click',() => {
+    ipcRenderer.send('get-compra');
+});
+
+ipcRenderer.on('set-compra',async (event,html) => {
+    document.getElementById('content').innerHTML = await html;
+    init_compra ();
+});
+
+const init_compra = () => {};
+//End compra
