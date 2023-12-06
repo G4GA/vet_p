@@ -165,7 +165,33 @@ body {
     gap: 2px;
 }
 
+#client_l_table {
+    display: grid;
+    margin: 2px 0 0 0;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+}
+
+#product_l_table {
+    display: grid;
+    margin: 2px 0 0 0;
+    width: 100%;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+}
+
+#product_list_body {
+    padding: 0;
+    background-color: #BBAB8C;
+}
+
 #list_body {
+    padding: 0;
+    background-color: #BBAB8C;
+}
+
+#client_list_body {
     padding: 0;
     background-color: #BBAB8C;
 }
@@ -244,7 +270,7 @@ body {
 #info_venta {
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #id_venta_val {
@@ -324,14 +350,16 @@ body {
 }
 
 .product_table {
+    height: 250px;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: #22092C;
+}
+.table {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background-color: #22092C;
     gap: 2px;
     padding: 2px;
-    height: 300px;
-    max-height: 300px;
-    overflow-y: auto;
 }
 
 .product_thead {
@@ -372,11 +400,10 @@ body {
     padding: 5px;
 }
 
-#search_producto {
-    grid-column:span 2;
+.product_compra_button {
     width: 50%;
     height: 25px;
-    margin: 4.5% 0 0 25%;
+    margin: 9% 0 0 25%;
 }
 
 .detalle_compra_labels {
@@ -388,4 +415,29 @@ body {
     color: white;
     margin: 0;
     height: fit-content;
+}
+
+.thelement_compra {
+    background-color: #cd3664;
+    color: white;
+    margin: 0;
+    height: fit-content;
+}
+
+.thelement_button {
+    background-color: #cd3664;
+    color: white;
+    margin: 0;
+    height: 18px;
+    font-size: small;
+    border: 0;
+    border-radius: 2px;
+}
+
+.thelement_button:hover {
+    background-color: #d86487;
+}
+
+.thelement_button:active {
+    background-color: #f40049;
 }

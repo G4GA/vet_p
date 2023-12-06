@@ -1,3 +1,4 @@
+<h3 style="text-align: center; margin: 0;">Registrar Venta</h3>
 <div id="info_venta">
     <p id="id_venta_label">ID Venta:</p>
     <p id="id_venta_val" style="margin: 0;"></p>
@@ -5,16 +6,10 @@
     <p id="venta_date_label">Fecha:</p>
     <input type="date" id="venta_date_val">
 
-    <!-- <p id="client_label">Cliente:</p>
-    <div id="client_info">
-        <p id="client_name" class="client_in_class" style="margin: 0;"></p>
-    </div> -->
-
     <p id="em_label">Empleado:</p>
     <div id="em_info">
         <p id="em_name" class="em_in_class" style="margin: 0;"></p>
     </div>
-    <button id="search_em_button" class="sale_btn">Buscar empleado</button>
 </div>
 <div id="product_add">
     <p>Agregar productos:</p>
@@ -32,11 +27,13 @@
     </div>
 </div>
 <div class="product_table" id="product_table_venta">
-    <p class="product_thead">ID:</p>
-    <p class="product_thead">Nombre:</p>
-    <p class="product_thead">Cantidad:</p>
-    <p class="product_thead">Precio Unitario:</p>
-    <h2 style="grid-row: 2 / span 5; grid-column: 1 / span 5; text-align: center; color: white;">Lista vacía</h2>
+    <div class="table" id="table_venta">
+        <p class="product_thead">ID:</p>
+        <p class="product_thead">Nombre:</p>
+        <p class="product_thead">Cantidad:</p>
+        <p class="product_thead">Precio Unitario:</p>
+        <h2 id="empty_list_venta" style="grid-row: 2 / span 5; grid-column: 1 / span 5; text-align: center; color: white;">Lista vacía</h2>
+    </div>
 </div>
 <div id="save_and_cancel">
     <div id="sale_IVA_total">

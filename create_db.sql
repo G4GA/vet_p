@@ -109,6 +109,8 @@ CREATE TABLE detalle_compra (
     id_compra INT NOT NULL,
 
     precio_compra MONEY NOT NULL,
+    cantidad INT NOT NULL,
+
     FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
     FOREIGN KEY (id_compra) REFERENCES compra(id_compra)
 );
@@ -182,6 +184,8 @@ GRANT ALL ON detalle_venta TO vet_admin;
 GRANT ALL ON receta TO vet_admin;
 GRANT ALL ON medicamento TO vet_admin;
 GRANT ALL ON receta_medicamento TO vet_admin;
+GRANT ALL ON detalle_compra TO vet_admin;
+GRANT ALL ON compra TO vet_admin;
 
 GRANT USAGE, SELECT ON SEQUENCE empleado_id_empleado_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE cliente_id_cliente_seq TO vet_admin;
@@ -192,6 +196,8 @@ GRANT USAGE, SELECT ON SEQUENCE medicamento_id_medicamento_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE receta_id_receta_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE detalle_venta_id_detalle_venta_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE venta_id_venta_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE compra_id_compra_seq TO vet_admin;
+GRANT USAGE, SELECT ON SEQUENCE detalle_compra_id_detalle_compra_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE IVA_id_IVA_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE producto_id_producto_seq TO vet_admin;
 GRANT USAGE, SELECT ON SEQUENCE servicio_id_servicio_seq TO vet_admin;
