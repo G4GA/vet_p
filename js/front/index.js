@@ -322,7 +322,6 @@ const init_compra = (current_date) => {
 
     document.getElementById('add_product_button_compra').addEventListener('click',() => {
         let product_val = {};
-        let total = 0;
 
         let warning_compra = document.getElementById('warning_compra');
         if (warning_compra == null) {
@@ -501,7 +500,6 @@ const init_compra = (current_date) => {
         document.getElementById('id_producto_val').innerHTML = product_info['id_producto'];
         document.getElementById('nombre_producto_val').value = product_info['nombre'];
         document.getElementById('nombre_producto_val').disabled = true;
-        document.getElementById('coste_producto_val').value = parseFloat(last_cost.slice(1,-1));
         document.getElementById('precio_unitario_val').value = parseFloat(product_info['precio_unitario'].slice(1,-1));
         document.getElementById('mstock_producto_val').value = parseInt(product_info['stock_minimo']);
     });

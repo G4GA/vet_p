@@ -81,7 +81,7 @@ const ipcLogic = (initial_window) => {
             var qry_result;
             console.log(id_element);
             if (id_element != ''){
-                qry_result = await query(`UPDATE empleado SET (id_tipo_empleado,nombre,n_usuario,contrasena,domicilio,fecha_creacion,telefono,activo) = (${RolId},'${values['name_val']}','${values['uname_val']}','${values['pwd_val']}','${values['addr_val']}','${values['date_val']}','${values['tel_val']}',${values['active_checkbox']}) WHERE id_empleado=${id_element}`);
+                qry_result = await query(`UPDATE empleado SET (nombre,n_usuario,contrasena,domicilio,fecha_creacion,telefono,activo) = ('${values['name_val']}','${values['uname_val']}','${values['pwd_val']}','${values['addr_val']}','${values['date_val']}','${values['tel_val']}',${values['active_checkbox']}) WHERE id_empleado=${id_element}`);
             }
             else {
                 qry_result = await query(`INSERT INTO empleado VALUES (DEFAULT,${RolId},'${values['name_val']}','${values['uname_val']}','${values['pwd_val']}','${values['addr_val']}','${values['date_val']}','${values['tel_val']}',${values['active_checkbox']})`);
@@ -165,7 +165,7 @@ const ipcLogic = (initial_window) => {
     ipcMain.on ('update-enter-client', async (event,values,id_element) => {
         let isValidNumber =  values['client_phone_val'].match(/^\d+$/) != null && values['client_phone_val'].length == 10;
         let value_string = `DEFAULT,'${values['client_name_val']}','${values['client_phone_val']}','${values['client_addr_val']}','${values['client_cdate_val']}','${values['client_udate_val']}'`;
-        let update_string = `${id_element},'${values['client_name_val']}','${values['client_phone_val']}','${values['client_addr_val']}','${values['client_cdate_val']}',CURRENT_DATE`;
+        let update_string = `'${values['client_name_val']}','${values['client_phone_val']}','${values['client_addr_val']}','${values['client_cdate_val']}',CURRENT_DATE`;
         let current_date = JSON.parse(await query('SELECT CURRENT_DATE'))[0]['current_date'].slice(0,10);
         if (isValidNumber) {
             if (id_element === '') {
@@ -173,7 +173,7 @@ const ipcLogic = (initial_window) => {
                 console.log(result);
             }
             else {
-                let result = await query(`UPDATE cliente set (id_cliente,nombre,telefono,domicilio,fecha_creacion,ultima_actualizacion) = (${update_string}) WHERE id_cliente=${id_element}`);
+                let result = await query(`UPDATE cliente set (nombre,telefono,domicilio,fecha_creacion,ultima_actualizacion) = (${update_string}) WHERE id_cliente=${id_element}`);
             }
             event.sender.send('update-enter-client-result',isValidNumber,current_date);
         }
@@ -204,37 +204,40 @@ const ipcLogic = (initial_window) => {
     });
 
     ipcMain.on ('register-compra',async (event,products,supplier,employe) => {
-        console.log(employe);
-
         let q_compra = `(DEFAULT,${employe['id_empleado']},'${supplier}',CURRENT_DATE)`;
         q_compra = `INSERT INTO compra VALUES ${q_compra} RETURNING id_compra`;
         var compra_result = JSON.parse(await query(q_compra))[0]['id_compra'];
 
         for (var product of products) {
-            const [id,pname,cost,price,qty,min_stock] = Object.values(product);
+            const [id,pname,min_stock,price,cost,qty] = Object.values(product);
             product = {
                         ['id']:id,
                         ['pname']:pname,
-                        ['cost']:cost,
+                        ['min_stock']:min_stock,
                         ['price']:price,
-                        ['qty']:qty,
-                        ['min_stock']:min_stock
+                        ['cost']:cost,
+                        ['qty']:qty
                     }
+            let p_result = product['id'];
             let query_str = `(DEFAULT,'${product['pname']}',${product['price']},${product['qty']},${product['min_stock']},CURRENT_DATE,CURRENT_DATE)`;
             if (product['id'] === 'Nueva entrada') {
                 query_str = `INSERT INTO producto VALUES ${query_str} RETURNING id_producto`;
-                var p_result = JSON.parse(await query(query_str))[0]['id_producto'];
-                console.log(p_result);
+                p_result = JSON.parse(await query(query_str))[0]['id_producto'];
+                console.log(p_result)
             }
             else {
-                let current_qty = parseInt(JSON.parse(await query (`SELECT cantidad FROM producto WHERE id_producto=${product['id']}`))[0]['cantidad']);
-                let query_str_update = query_str = `(${product['id']},'${product['pname']}',${product['price']},${parseInt(product['qty']) + current_qty},${product['min_stock']},CURRENT_DATE)`;
+                let current_qty = parseInt(JSON.parse(await query (`SELECT unidades FROM producto WHERE id_producto=${product['id']}`))[0]['unidades']);
+                // console.log(parseInt(product['qty']),parseInt(current_qty));
+                let query_str_update = `(${product['price']},${parseInt(product['qty']) + parseInt(current_qty)},${product['min_stock']},CURRENT_DATE)`;
+                query_str_update = `UPDATE producto set (precio_unitario,unidades,stock_minimo,ultima_actualizacion) = ${query_str_update} WHERE id_producto=${product['id']}`;
+                let query_result = JSON.parse(await query(query_str_update));
             }
 
 
             let q_detalle = `(DEFAULT,'${p_result}','${compra_result}',${product['cost']},${product['qty']})`;
             q_detalle = `INSERT INTO detalle_compra VALUES ${q_detalle} RETURNING id_detalle_compra`;
-            let detalle_result = JSON.parse(await query(q_detalle))[0]['id_detalle_compra'];
+
+            let detalle_result = await query(q_detalle);
         }
     });
 
@@ -253,10 +256,8 @@ const ipcLogic = (initial_window) => {
 
     ipcMain.on ('select-clicked-product', async (event,id) => {
         let product_result = JSON.parse (await query(`SELECT * FROM producto WHERE id_producto=${id}`))[0];
-        let last_purchase = JSON.parse (await query(`SELECT * FROM compra ORDER BY fecha`))[0];
-        let last_cost = JSON.parse (await query(`SELECT * FROM detalle_compra WHERE (id_compra=${last_purchase['id_compra']} AND id_producto=${product_result['id_producto']})`))[0]['precio_compra'];
 
-        initial_window.webContents.send ('select-clicked-product-result',product_result,last_cost);
+        initial_window.webContents.send ('select-clicked-product-result',product_result);
         list_win.close();
     });
 }
